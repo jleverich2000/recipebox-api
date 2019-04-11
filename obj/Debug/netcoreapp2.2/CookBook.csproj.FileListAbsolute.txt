@@ -1,0 +1,15 @@
+C:\Users\jleve\source\repos\cookbook\CookBook\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\jleve\source\repos\cookbook\CookBook\bin\Debug\netcoreapp2.2\CookBook.deps.json
+C:\Users\jleve\source\repos\cookbook\CookBook\bin\Debug\netcoreapp2.2\CookBook.runtimeconfig.json
+C:\Users\jleve\source\repos\cookbook\CookBook\bin\Debug\netcoreapp2.2\CookBook.runtimeconfig.dev.json
+C:\Users\jleve\source\repos\cookbook\CookBook\bin\Debug\netcoreapp2.2\CookBook.dll
+C:\Users\jleve\source\repos\cookbook\CookBook\bin\Debug\netcoreapp2.2\CookBook.pdb
+C:\Users\jleve\source\repos\cookbook\CookBook\obj\Debug\netcoreapp2.2\CookBook.csproj.CoreCompileInputs.cache
+C:\Users\jleve\source\repos\cookbook\CookBook\obj\Debug\netcoreapp2.2\CookBook.RazorAssemblyInfo.cache
+C:\Users\jleve\source\repos\cookbook\CookBook\obj\Debug\netcoreapp2.2\CookBook.RazorAssemblyInfo.cs
+C:\Users\jleve\source\repos\cookbook\CookBook\obj\Debug\netcoreapp2.2\CookBook.AssemblyInfoInputs.cache
+C:\Users\jleve\source\repos\cookbook\CookBook\obj\Debug\netcoreapp2.2\CookBook.AssemblyInfo.cs
+C:\Users\jleve\source\repos\cookbook\CookBook\obj\Debug\netcoreapp2.2\CookBook.RazorTargetAssemblyInfo.cache
+C:\Users\jleve\source\repos\cookbook\CookBook\obj\Debug\netcoreapp2.2\CookBook.dll
+C:\Users\jleve\source\repos\cookbook\CookBook\obj\Debug\netcoreapp2.2\CookBook.pdb
+C:\Users\jleve\source\repos\cookbook\CookBook\obj\Debug\netcoreapp2.2\CookBook.csprojAssemblyReference.cache
