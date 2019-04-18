@@ -25,7 +25,7 @@ namespace CookBook
             // services.AddTransient(_ => new AppDb(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddTransient(_ => new AppDb());
 
-            services.AddSingleton<IInventoryServices, InventoryServices>();
+            services.AddTransient<IRecipeServices, RecipeServices>();
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",

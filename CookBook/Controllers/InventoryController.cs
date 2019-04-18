@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using CookBook.Models;
 using CookBook.Services;
 using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Cors;
 using Newtonsoft.Json;
 
 namespace CookBook.Controllers
@@ -12,9 +11,9 @@ namespace CookBook.Controllers
     [ApiController]
     public class InventoryController : ControllerBase
     {
-        private readonly IInventoryServices _services;
+        private readonly IRecipeServices _services;
 
-        public InventoryController(IInventoryServices services)
+        public InventoryController(IRecipeServices services)
         {
             _services = services;
         }
@@ -24,7 +23,7 @@ namespace CookBook.Controllers
 
         public Recipe AddInventoryItems(Recipe items)
         {
-            var inventoryItems = _services.AddInventoryItems(items);
+            var inventoryItems = _services.AddRecipeItems(items);
 
             return inventoryItems;
         }
@@ -37,7 +36,7 @@ namespace CookBook.Controllers
             Regex rgx = new Regex(pattern);
             string name = rgx.Replace(HttpContext.Request.Query["name"].ToString(), "");
 
-            Recipe recipe = _services.GetInventoryItems(name);
+            Recipe recipe = _services.GetRecipeItems(name);
 
             return new JsonResult(JsonConvert.SerializeObject(recipe));
         }

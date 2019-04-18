@@ -7,25 +7,25 @@ using CookBook.Repository;
 
 namespace CookBook.Services
 {
-    public class InventoryServices : IInventoryServices
+    public class RecipeServices : IRecipeServices
     {
-        private readonly Recipe _inventoryItems;
+        private readonly Recipe _recipeItems;
         private readonly AppDb _appDb;
 
-        public InventoryServices()
+        public RecipeServices()
         {
-            _inventoryItems = new Recipe();
+            _recipeItems = new Recipe();
             _appDb = new AppDb();
 
         }
 
-        public Recipe AddInventoryItems(Recipe items)
+        public Recipe AddRecipeItems(Recipe items)
         {
            
             return items;
         }
 
-        public Recipe GetInventoryItems(string name)
+        public Recipe GetRecipeItems(string name)
         {
             Recipe recipe = new Recipe();
             recipe = _appDb.GetRecipeByName(name);

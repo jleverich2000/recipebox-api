@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CookBook.Services
 {
-    public interface IInventoryServices
+    public interface IRecipeServices
     {
-        Recipe AddInventoryItems(Recipe items);
+        Recipe AddRecipeItems(Recipe items);
 
-       Recipe GetInventoryItems(String name);
+       Recipe GetRecipeItems(String name);
     }
 }
