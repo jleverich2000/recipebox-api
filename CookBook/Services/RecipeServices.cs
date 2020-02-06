@@ -19,10 +19,9 @@ namespace CookBook.Services
 
         }
 
-        public Recipe AddRecipeItems(Recipe items)
+        public void AddRecipeItems(Recipe recipe)
         {
-           
-            return items;
+            _appDb.SaveRecipeToDB(recipe);
         }
 
         public Recipe GetRecipeItems(string name)

@@ -8,8 +8,28 @@ namespace CookBook.Models
     public class Recipe
     {
         public string Name{ get; set; }
-        public string Ingredients { get; set; }
-        public string Directions { get; set; }
-        public string Category { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
+        public List<Direction> Directions { get; set; }
+        public CategoryEnum Category { get; set; }
     }
+
+    public class Ingredient
+    {
+        public string unitType { get; set; }
+        public float quantity { get; set; }
+        public string name { get; set; }
+    }
+
+    public class Direction
+    {
+        public int step { get; set; }
+        public string body { get; set; }
+    }
+
+    public enum CategoryEnum
+    { 
+        dinner, 
+        breakfast
+    }
+
 }

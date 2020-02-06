@@ -4,6 +4,7 @@ using CookBook.Models;
 using CookBook.Services;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using System;
 
 namespace CookBook.Controllers
 {
@@ -19,13 +20,20 @@ namespace CookBook.Controllers
         }
 
         [HttpPost]
-        [Route("AddInventoryItems")]
-
-        public Recipe AddInventoryItems(Recipe items)
+        [Route("save_recipe")]
+        public IActionResult SaveRecipe(Recipe recipe)
         {
-            var inventoryItems = _services.AddRecipeItems(items);
+            try
+            {
+                _services.AddRecipeItems(recipe);
 
-            return inventoryItems;
+            }
+            catch(Exception e)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
         }
 
         [HttpGet]
