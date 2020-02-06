@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "94555eb1-3723-4a15-9c65-86bf85d3909c",
+		"name": "recipebox_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getrecipe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44320/v1/GetRecipe?name=chocolate+milk",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44320",
+					"path": [
+						"v1",
+						"GetRecipe"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "chocolate+milk"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save_recipe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Name\":\"strawberry milk\",\n\t\"Ingredients\":[ \n\t\t{\n\t\t\t\"unitType\": \"cup\",\n\t\t\t\"quantity\":1,\n\t\t\t\"name\":\"milk\"\n\t\t},\n\t\t{\n\t\t\t\"unitType\": \"tablespoons\",\n\t\t\t\"quantity\":2,\n\t\t\t\"name\":\"strawberry syrup\"\n\t\t}\n\t\t],\n\t\t\"Directions\":[\n\t\t\t\t{\n\t\t\t\t\t\"step\":1,\n\t\t\t\t\t\"body\":\"pour milk into a glass\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"step\":2,\n\t\t\t\t\t\"body\":\"add syrup to milk\"\n\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\"step\":3,\n\t\t\t\t\t\"body\":\"stir to combine\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Category\":\"dinner\"\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44320/v1/save_recipe/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44320",
+					"path": [
+						"v1",
+						"save_recipe",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
