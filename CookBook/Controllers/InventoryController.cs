@@ -5,6 +5,7 @@ using CookBook.Services;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace CookBook.Controllers
 {
@@ -47,6 +48,34 @@ namespace CookBook.Controllers
             Recipe recipe = _services.GetRecipeItems(name);
 
             return new JsonResult(JsonConvert.SerializeObject(recipe));
+        }
+
+        [HttpGet]
+        [Route("search")]
+        public JsonResult GetSearch()
+        {
+            string pattern = @"^\s*""?|""?\s*$";
+            Regex rgx = new Regex(pattern);
+            string term = rgx.Replace(HttpContext.Request.Query["term"].ToString(), "");
+
+           List<SearchResult> results = _services.Search(term);
+
+            return new JsonResult(results);
+
+        }
+
+        [HttpGet]
+        [Route("recipeById")]
+        public JsonResult GetRecipeById()
+        {
+            string pattern = @"^\s*""?|""?\s*$";
+            Regex rgx = new Regex(pattern);
+            string term = rgx.Replace(HttpContext.Request.Query["term"].ToString(), "");
+
+            var item = new SearchResult { Name = "foojelly", Id = 69420 };
+            SearchResult[] results = { item };
+            return new JsonResult(results);
+
         }
 
         [HttpGet]

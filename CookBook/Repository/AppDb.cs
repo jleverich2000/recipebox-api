@@ -68,6 +68,33 @@ namespace CookBook.Repository
             return recipe;
         }
 
+        public List<SearchResult> SearchByTerm(string term)
+        {
+            var listOfSearchResults = new List<SearchResult>();
+            if (Connection.State == ConnectionState.Closed)
+            {
+                Connection.Open();
+            }
+            string sql = "SELECT * FROM recipes WHERE name LIKE '%" + term + "%'";
+            MySqlCommand cmd = new MySqlCommand(sql, Connection);
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+
+            //Read the data and store them in the list
+            while (dataReader.Read())
+            {
+                var result = new SearchResult();
+                result.Id = int.Parse(dataReader["id"].ToString());
+                result.Name = dataReader["name"].ToString();
+
+                listOfSearchResults.Add(result);
+            }
+
+            //close Data Reader
+            dataReader.Close();
+
+            return listOfSearchResults;
+        }
+
         public void Dispose()
         {
             Connection.Close();

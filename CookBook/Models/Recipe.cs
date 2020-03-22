@@ -12,6 +12,11 @@ namespace CookBook.Models
         public List<Direction> Directions { get; set; }
         public CategoryEnum Category { get; set; }
     }
+    public class RecipeListItem
+    {
+        public string Name { get; set; }
+        public string RecipeId { get; set; }
+    }
 
     public class Ingredient
     {

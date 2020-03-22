@@ -31,6 +31,11 @@ namespace CookBook.Services
             return recipe;
         }
 
+        public List<SearchResult> Search(string term)
+        {
+           return _appDb.SearchByTerm(term);
+            
+        }
 
     }
 }

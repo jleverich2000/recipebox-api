@@ -10,6 +10,9 @@ namespace CookBook.Services
     {
         void AddRecipeItems(Recipe items);
 
-       Recipe GetRecipeItems(String name);
+       Recipe GetRecipeItems(string name);
+
+        List<SearchResult> Search(string term);
+
     }
 }
