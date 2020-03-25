@@ -14,5 +14,7 @@ namespace CookBook.Services
 
         List<SearchResult> Search(string term);
 
+        Recipe GetRecipeById(int recipeId);
+
     }
 }

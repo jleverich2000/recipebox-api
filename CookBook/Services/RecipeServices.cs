@@ -31,6 +31,16 @@ namespace CookBook.Services
             return recipe;
         }
 
+        public Recipe GetRecipeById(int recipeId)
+        {
+            Recipe recipe = new Recipe();
+            recipe = _appDb.GetRecipeById(recipeId);
+            recipe.Ingredients = _appDb.GetIngredientsById(recipeId);
+            recipe.Directions = _appDb.GetDirectionsById(recipeId);
+
+            return recipe;
+        }
+
         public List<SearchResult> Search(string term)
         {
            return _appDb.SearchByTerm(term);

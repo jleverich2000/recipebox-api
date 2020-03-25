@@ -6,6 +6,8 @@ using MySql.Data.MySqlClient;
 using CookBook.Models;
 using System.Data;
 using Newtonsoft.Json;
+using System.Collections;
+using System.Globalization;
 
 namespace CookBook.Repository
 {
@@ -66,6 +68,91 @@ namespace CookBook.Repository
             dataReader.Close();
 
             return recipe;
+        }
+
+        public Recipe GetRecipeById(int recipeId)
+        {
+            Recipe recipe = new Recipe();
+            if (Connection.State == ConnectionState.Closed)
+            {
+                Connection.Open();
+            }
+            string sql = "SELECT * FROM recipes WHERE id='" + recipeId + "'";
+            MySqlCommand cmd = new MySqlCommand(sql, Connection);
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+
+            //Read the data and store them in the list
+            while (dataReader.Read())
+            {
+                recipe.RecipeId = dataReader["id"].ToString();
+                recipe.Name = dataReader["name"].ToString();
+                CategoryEnum category = (CategoryEnum)Enum.Parse(typeof(CategoryEnum), dataReader["category"].ToString(), true);
+                recipe.Category = category;
+            }
+
+            //close Data Reader
+            dataReader.Close();
+
+            return recipe;
+        }
+
+        public List<Ingredient> GetIngredientsById(int recipeId)
+        {
+
+            List<Ingredient> ingredientList = new List<Ingredient>();
+
+            if (Connection.State == ConnectionState.Closed)
+            {
+                Connection.Open();
+            }
+            string sql = "SELECT * FROM ingredient WHERE recipe_id='" + recipeId + "'";
+            MySqlCommand cmd = new MySqlCommand(sql, Connection);
+            MySqlDataReader dataReader = cmd.ExecuteReader(CommandBehavior.SingleResult);
+
+            //Read the data and store them in the list
+            while (dataReader.Read())
+            {
+                var ingredient = new Ingredient();
+
+                ingredient.name = dataReader["name"].ToString();
+                ingredient.unitType = dataReader["unit_type"].ToString();
+                ingredient.quantity = float.Parse(dataReader["quantity"].ToString());
+                ingredientList.Add(ingredient);
+            }
+
+            //close Data Reader
+            dataReader.Close();
+
+            return ingredientList;
+        }
+
+        public List<Direction> GetDirectionsById(int recipeId)
+        {
+
+            List<Direction> directionList = new List<Direction>();
+
+            if (Connection.State == ConnectionState.Closed)
+            {
+                Connection.Open();
+            }
+            string sql = "SELECT * FROM directions WHERE recipe_id='" + recipeId + "'";
+            MySqlCommand cmd = new MySqlCommand(sql, Connection);
+            MySqlDataReader dataReader = cmd.ExecuteReader(CommandBehavior.SingleResult);
+
+            //Read the data and store them in the list
+            while (dataReader.Read())
+            {
+                var direction = new Direction();
+
+                direction.Instruction = dataReader["instruction"].ToString();
+                direction.StepNumber = int.Parse( dataReader["step_number"].ToString());
+                directionList.Add(direction);
+            }
+
+            //close Data Reader
+            dataReader.Close();
+
+            return directionList;
         }
 
         public List<SearchResult> SearchByTerm(string term)

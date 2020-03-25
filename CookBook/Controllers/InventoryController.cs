@@ -70,10 +70,13 @@ namespace CookBook.Controllers
         {
             string pattern = @"^\s*""?|""?\s*$";
             Regex rgx = new Regex(pattern);
-            string term = rgx.Replace(HttpContext.Request.Query["term"].ToString(), "");
+            string recipeId = rgx.Replace(HttpContext.Request.Query["recipeId"].ToString(), "");
 
-            var item = new SearchResult { Name = "foojelly", Id = 69420 };
-            SearchResult[] results = { item };
+
+
+            Recipe results = _services.GetRecipeById(Int32.Parse(recipeId));
+
+
             return new JsonResult(results);
 
         }

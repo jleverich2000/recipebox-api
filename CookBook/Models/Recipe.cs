@@ -7,6 +7,7 @@ namespace CookBook.Models
 {
     public class Recipe
     {
+        public string RecipeId { get; set; }
         public string Name{ get; set; }
         public List<Ingredient> Ingredients { get; set; }
         public List<Direction> Directions { get; set; }
@@ -27,14 +28,16 @@ namespace CookBook.Models
 
     public class Direction
     {
-        public int step { get; set; }
-        public string body { get; set; }
+        public int StepNumber { get; set; }
+        public string Instruction { get; set; }
     }
 
     public enum CategoryEnum
     { 
         dinner, 
-        breakfast
+        breakfast,
+        drink
+        
     }
 
 }
