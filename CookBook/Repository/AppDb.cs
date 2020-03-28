@@ -70,7 +70,7 @@ namespace CookBook.Repository
             return recipe;
         }
 
-        public Recipe GetRecipeById(int recipeId)
+        public Recipe GetRecipeById(string recipeId)
         {
             Recipe recipe = new Recipe();
             if (Connection.State == ConnectionState.Closed)
@@ -96,7 +96,7 @@ namespace CookBook.Repository
             return recipe;
         }
 
-        public List<Ingredient> GetIngredientsById(int recipeId)
+        public List<Ingredient> GetIngredientsById(string recipeId)
         {
 
             List<Ingredient> ingredientList = new List<Ingredient>();
@@ -126,7 +126,7 @@ namespace CookBook.Repository
             return ingredientList;
         }
 
-        public List<Direction> GetDirectionsById(int recipeId)
+        public List<Direction> GetDirectionsById(string recipeId)
         {
 
             List<Direction> directionList = new List<Direction>();
@@ -170,7 +170,7 @@ namespace CookBook.Repository
             while (dataReader.Read())
             {
                 var result = new SearchResult();
-                result.Id = int.Parse(dataReader["id"].ToString());
+                result.Id = dataReader["id"].ToString();
                 result.Name = dataReader["name"].ToString();
 
                 listOfSearchResults.Add(result);

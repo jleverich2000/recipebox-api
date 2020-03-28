@@ -74,7 +74,7 @@ namespace CookBook.Controllers
 
 
 
-            Recipe results = _services.GetRecipeById(Int32.Parse(recipeId));
+            Recipe results = _services.GetRecipeById(recipeId);
 
 
             return new JsonResult(results);
