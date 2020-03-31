@@ -19,9 +19,14 @@ namespace CookBook.Services
 
         }
 
-        public void AddRecipeItems(Recipe recipe)
+        public void SaveRecipe(Recipe recipe)
         {
-            _appDb.SaveRecipeToDB(recipe);
+            var recipeId = Guid.NewGuid().ToString();
+            var recipeDbo = new RecipeDbo(recipeId, recipe.Name, recipe.Category);
+            _appDb.SaveToRecipeTable(recipeDbo);
+            _appDb.SaveToIngredientsTable(recipeId, recipe.Ingredients);
+            _appDb.SaveToDirectionsTable(recipeId, recipe.Directions);
+
         }
 
         public Recipe GetRecipeItems(string name)

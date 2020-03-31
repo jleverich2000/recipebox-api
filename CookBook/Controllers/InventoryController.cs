@@ -26,10 +26,10 @@ namespace CookBook.Controllers
         {
             try
             {
-                _services.AddRecipeItems(recipe);
+                _services.SaveRecipe(recipe);
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return BadRequest();
             }

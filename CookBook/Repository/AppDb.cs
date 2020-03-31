@@ -19,30 +19,71 @@ namespace CookBook.Repository
         {
             Connection = new MySqlConnection("server = 127.0.0.1; user id = jleverich; password = 9673; port = 3306; database = cookbook; ");
         }
-        public void SaveRecipeToDB(Recipe recipe)
-        {
-            var name = recipe.Name;
-            var ingredients = JsonConvert.SerializeObject(recipe.Ingredients);
-            var directions = JsonConvert.SerializeObject(recipe.Directions);
-            var category = recipe.Category;
 
-            String query = "INSERT INTO recipes (name, ingredients, directions, category) VALUES (@name,@ingredients,@directions, @category)";
+        public void SaveToRecipeTable(RecipeDbo recipe)
+        {
+            String query = "INSERT INTO recipes (name, id, category) VALUES (@name,@id, @category)";
 
             using (MySqlCommand command = new MySqlCommand(query, Connection))
             {
-                command.Parameters.AddWithValue("@name", name);
-                command.Parameters.AddWithValue("@ingredients", ingredients);
-                command.Parameters.AddWithValue("@directions", directions);
-                command.Parameters.AddWithValue("@category", category);
+                command.Parameters.AddWithValue("@name", recipe.Name);
+                command.Parameters.AddWithValue("@id", recipe.RecipeId);
+                command.Parameters.AddWithValue("@category", recipe.Category);
 
                 Connection.Open();
                 int result = command.ExecuteNonQuery();
-
+                Connection.Close();
                 // Check Error
                 if (result < 0)
                     Console.WriteLine("Error inserting data into Database!");
             }
+        }
 
+        public void SaveToIngredientsTable(string recipeId, List<Ingredient> ingredients)
+        {
+            foreach(var ingredient in ingredients)
+            {
+                String query = "INSERT INTO ingredient (recipe_id, name, unit_type, quantity, order_of ) VALUES (@recipe_id, @name, @unit_Type, @quantity, @order_Of)";
+
+                using (MySqlCommand command = new MySqlCommand(query, Connection))
+                {
+                    command.Parameters.AddWithValue("@recipe_id", recipeId);
+                    command.Parameters.AddWithValue("@name", ingredient.name);
+                    command.Parameters.AddWithValue("@unit_Type", ingredient.unitType);
+                    command.Parameters.AddWithValue("@quantity", ingredient.quantity);
+                    command.Parameters.AddWithValue("@order_Of", ingredient.orderOf);
+
+
+                    Connection.Open();
+                    int result = command.ExecuteNonQuery();
+                    Connection.Close();
+                    // Check Error
+                    if (result < 0)
+                        Console.WriteLine("Error inserting data into Database!");
+                }
+            }
+        }
+
+        public void SaveToDirectionsTable(string recipeId, List<Direction> directions)
+        {
+            foreach (Direction direction in directions)
+            {
+                String query = "INSERT INTO directions (recipe_id, instruction, step_number ) VALUES (@recipe_id, @instruction, @step_number)";
+
+                using (MySqlCommand command = new MySqlCommand(query, Connection))
+                {
+                    command.Parameters.AddWithValue("@recipe_id", recipeId);
+                    command.Parameters.AddWithValue("@instruction", direction.Instruction);
+                    command.Parameters.AddWithValue("@step_number", direction.StepNumber);
+
+                    Connection.Open();
+                    int result = command.ExecuteNonQuery();
+                    Connection.Close();
+                    // Check Error
+                    if (result < 0)
+                        Console.WriteLine("Error inserting data into Database!");
+                }
+            }
         }
 
         public Recipe GetRecipeByName(string name)

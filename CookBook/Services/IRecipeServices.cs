@@ -8,9 +8,9 @@ namespace CookBook.Services
 {
     public interface IRecipeServices
     {
-        void AddRecipeItems(Recipe items);
+        void SaveRecipe(Recipe items);
 
-       Recipe GetRecipeItems(string name);
+        Recipe GetRecipeItems(string name);
 
         List<SearchResult> Search(string term);
 
